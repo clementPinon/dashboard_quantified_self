@@ -1,0 +1,47 @@
+{
+  // Author : Clement Pinon
+  // mail : clement.pinon@gmail.com
+  
+  //http://developer.chrome.com/extensions/overview.html
+
+  "manifest_version": 2,
+
+  "name": "Personal connected dashboard",
+  "description": "This extension helps you monitoring the way and the frequency you browse the web",
+  "version": "1.2", // add to favorite feature, red button and congrat mark
+  "background" : {
+    //"scripts": ["dash.js"],
+    "page" : "background.html",
+    "persistent" : false
+  },
+
+  "permissions": [
+    "tabs", 
+    "background", 
+    "*://*/*"
+    //"http://*/*",
+    //"https://*/*"
+  ],  
+  //next step : https://developer.chrome.com/extensions/browsingData.html
+
+  //"web_accessible_resources": ["loading.html"], 
+
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+        //"http://*/*",
+        //"https://*/*"
+      ],
+      "js": ["dash.js", "test_uniqueID.js"]
+    }
+  ],
+
+  "browser_action": {
+    "default_icon": "dash.png",
+    "default_popup": "popup.html"
+  }
+
+}
+
+

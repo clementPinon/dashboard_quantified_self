@@ -10,7 +10,6 @@
   "description": "This extension helps you monitoring the way and the frequency you browse the web",
   "version": "1.2", // add to favorite feature, red button and congrat mark
   "background" : {
-    //"scripts": ["dash.js"],
     "page" : "background.html",
     "persistent" : false
   },
@@ -18,20 +17,16 @@
   "permissions": [
     "tabs", 
     "background", 
-    "*://*/*"
-    //"http://*/*",
-    //"https://*/*"
+    "http://*/*",
+    "https://*/*"
   ],  
   //next step : https://developer.chrome.com/extensions/browsingData.html
-
-  //"web_accessible_resources": ["loading.html"], 
 
   "content_scripts": [
     {
       "matches": [
-        "*://*/*"
-        //"http://*/*",
-        //"https://*/*"
+        "http://*/*",
+        "https://*/*"
       ],
       "js": ["dash.js", "test_uniqueID.js"]
     }

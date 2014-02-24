@@ -1,4 +1,3 @@
-chrome.browserAction.setIcon({path:"dash.png"});
 chrome.tabs.query({active: true, currentWindow: true, lastFocusedWindow: true}, function (Tab) {
       var tablink = Tab[0].url;
       var tabId = Tab[0].id;

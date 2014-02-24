@@ -1,6 +1,7 @@
 {
   // Author : Clement Pinon
   // mail : clement.pinon@gmail.com
+  // ** PLEASE IF USED CHANGE WEBPROPERTY in popup.js and dash.js **
   
   //http://developer.chrome.com/extensions/overview.html
 

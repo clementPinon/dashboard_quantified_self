@@ -13,7 +13,7 @@ chrome.tabs.query({active: true, currentWindow: true, lastFocusedWindow: true}, 
         var ga_hit = 
           "http://www.google-analytics.com/collect?"+
           "v=1&"+ //version
-          "tid=UA-47883077-1&"+ //webproperty
+          "tid=UA-47883077-1&"+ //webproperty, ** PLEASE IF USED CHANGE WEBPROP **
           "cid=UniquevisitorIdToBeFilledIn&"+ // visitor Unique ID
           "t=event&"+ // hit type event
           "ec="+ "visit" +"&"+ //event Cat

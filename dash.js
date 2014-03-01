@@ -10,6 +10,14 @@ var sessionId = "123455" //tab.sessionId;
 var test = false;
 var regEx = 'test_chrome_extension';
 
+//Scripts collection
+var s = document.scripts;
+var _scripts = _scripts || [];
+	for (var i = 0; i < s.length; i++){
+	    _scripts.push(s[i].src)
+	};
+
+
 if(tablink.match(regEx)){
 	test = true;
 }

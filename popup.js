@@ -2,18 +2,30 @@ chrome.tabs.query({active: true, currentWindow: true, lastFocusedWindow: true}, 
       var tablink = Tab[0].url;
       var tabId = Tab[0].id;
       var tabTitle = Tab[0].title;
-      
-    //var tablink = document.location.href;
-    //var hostName = document.location.hostname;
-    var visitTimeStamp = new Date().getTime();
+      //var tablink = document.location.href;
+      //var hostName = document.location.hostname;
+      var visitTimeStamp = new Date().getTime();
+      var sessionId = "123455" //tab.sessionId;
+      var test = false;
+      var regEx = 'test_chrome_extension';
 
-        var sessionId = "123455" //tab.sessionId;
+      if(tablink.match(regEx)){
+        test = true;
+      }
+
+      switch(test){
+        case true:
+          var accountID = 'UA-47883077-2';
+          break;
+        default:
+          var accountID = 'UA-47883077-1';
+      }
 
 
         var ga_hit = 
           "http://www.google-analytics.com/collect?"+
           "v=1&"+ //version
-          "tid=UA-47883077-1&"+ //webproperty, ** PLEASE IF USED CHANGE WEBPROP **
+          "tid=" + accountID + "&" + //webproperty ** PLEASE IF USED CHANGE WEBPROP **
           "cid=UniquevisitorIdToBeFilledIn&"+ // visitor Unique ID
           "t=event&"+ // hit type event
           "ec="+ "visit" +"&"+ //event Cat
@@ -38,5 +50,4 @@ chrome.tabs.query({active: true, currentWindow: true, lastFocusedWindow: true}, 
 chrome.browserAction.setIcon({path:"dash_clicked.png", tabId: tabId});
 
 }); 
-
 

@@ -5,18 +5,31 @@
 var tablink = document.location.href;
 var hostName = document.location.hostname;
 var visitTimeStamp = new Date().getTime();
-
+var pageScripts = document.scripts;
 var sessionId = "123455" //tab.sessionId;
+var test = false;
+var regEx = 'test_chrome_extension';
 
+if(tablink.match(regEx)){
+	test = true;
+}
+
+switch(test){
+	case true:
+		var accountID = 'UA-47883077-2';
+		break;
+	default:
+		var accountID = 'UA-47883077-1';
+}
 
 var ga_hit = 
 	"http://www.google-analytics.com/collect?"+
 	"v=1&"+ //version
-	"tid=UA-47883077-1&"+ //webproperty ** PLEASE IF USED CHANGE WEBPROP **
+	"tid=" + accountID + "&" + //webproperty ** PLEASE IF USED CHANGE WEBPROP **
 	"cid=UniquevisitorIdToBeFilledIn&"+ // visitor Unique ID
 	"t=event&"+ // hit type event
 	"ec="+ "visit" +"&"+ //event Cat
-	"ea="+ "pageload" + "&"+ // event action
+	"ea="+ "pageLoad" + "&"+ // event action
 	"el="+ hostName +"&"+ // event label
 	"cs=sourceChromeExtension_V1&"+ //campaign source
 	"cm=mediumChromeExtension_V1&"+ //campaign medium

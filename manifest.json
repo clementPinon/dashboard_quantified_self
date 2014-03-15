@@ -9,7 +9,7 @@
 
   "name": "Personal connected dashboard",
   "description": "This extension helps you monitoring the way and the frequency you browse the web",
-  "version": "1.2", // add to favorite feature, red button and congrat mark
+  "version": "1.3", // add to favorite feature, red button and congrat mark, geolocalization
   "background" : {
     "page" : "background.html",
     "persistent" : false
@@ -17,7 +17,9 @@
 
   "permissions": [
     "tabs", 
-    "background", 
+    "background",
+    "geolocation", 
+    "unlimitedStorage",
     "http://*/*",
     "https://*/*"
   ],  
@@ -29,7 +31,7 @@
         "http://*/*",
         "https://*/*"
       ],
-      "js": ["dash.js", "test_uniqueID.js"]
+      "js": ["jQuery.js","dash.js", "geoLocation.js", "test_uniqueID.js"]
     }
   ],
 

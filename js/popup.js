@@ -47,7 +47,7 @@ chrome.tabs.query({active: true, currentWindow: true, lastFocusedWindow: true}, 
       xmlHttp.open( "GET", ga_hit, false );
       xmlHttp.send();
       
-chrome.browserAction.setIcon({path:"img/dash_clicked.png", tabId: tabId});
+chrome.browserAction.setIcon({path:"/img/dash_clicked.png", tabId: tabId});
 
 }); 
 

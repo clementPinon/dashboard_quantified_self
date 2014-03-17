@@ -77,9 +77,10 @@ switch(test){
 
 }
 
-
+/* GET Request paused as we can pass it through the background.js script
 
 xmlHttp = new XMLHttpRequest();
 xmlHttp.open( "GET", ga_hit, false );
 xmlHttp.send();
 
+*/

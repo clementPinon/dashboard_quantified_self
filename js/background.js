@@ -20,87 +20,91 @@ var list = function(obj) {
   return properties;
 };
 
-/*chrome.tabs.query({currentWindow: true, active: true}, function(tab){
-        alert(tab[0].url);
-  });
+//method to get domain out of tab url
+var getDomain = function (data) {
+  var a = document.createElement('a');
+  a.href = data;
+  return a.hostname;
+}
+
+/* NOTE:
+The geolocation function works properly with the background.js
+We should work on having it triggered only once per day or only once the browser is being opened.
+*/   
 
 
-chrome.tabs.query({currentWindow: true}, function(tab){
-        alert(typeof(tab));
-        alert(countProperties(tab));
-        for (var index = 0; index < countProperties(tab); index ++){
-     		alert(tab[index].url);   	
-        }
-});
-
-*/
-
-chrome.tabs.query({}, function(tab){
-        
-	// number of tabs opened
-    //alert(countProperties(tab));
-
-	// tab properties: active,favIconUrl,height,highlighted,id,incognito,index,pinned,selected,status,title,url,width,windowId		
-    //alert(list(tab[0]));
-    //alert(Object.keys(tab[0].object)));
-    /*
-    alert(tab[0].active);
-    alert(tab[0].favIconUrl);
-    alert(tab[0].height);
-    alert(tab[0].highlighted);
-    alert(tab[0].id);
-    alert(tab[0].incognito);
-    alert(tab[0].index);
-    alert(tab[0].pinned);
-    alert(tab[0].selected);
-    alert(tab[0].status);
-    alert(tab[0].title);
-    alert(tab[0].url);
-    alert(tab[0].width);
-    alert(tab[0].windowId);
-    */
-
-    //for every tabs opened: display the url 
-    /* 
-    for (var index = 0; index < countProperties(tab); index ++){
- 		alert(tab[index].url);   	
-    }
-    */
-
-	
-	/* Add some listeners for tab changing events. We want to update our
-	*  counters when this sort of stuff happens. */
-	chrome.tabs.onSelectionChanged.addListener(
-		function(tabId, selectionInfo) {
-			//alert(tabId);
-			alert('onSelectionChangedchanged')
-			//alert(tab[0].title);
-			alert(tab[0].url);
-			//alert(tab[0].index);
-			//currentTabId = tabId;
-			//updateCounter();
-	});
-
-	chrome.tabs.onUpdated.addListener(
-		function(tabId, selectionInfo) {
-			//alert(tabId);
-			alert('onUpdated')
-			//alert(tab[0].title);
-			alert(tab[0].url);
-			//alert(tab[0].index);
-		chrome.tabs.query({}, function(tab){
-			alert('numberOfTabOpened');
-			alert(countProperties(tab));
-		});
-
-
-	});
-
+/* Add some listeners for tab changing events. We want to update our
+* counters when a new tab is selected. */
+chrome.tabs.onSelectionChanged.addListener(
+	function(tabId, selectionInfo) {
+		//alert('onSelectionChanged');
 		chrome.tabs.query({currentWindow: true, active: true}, function(tab){
-			alert(tab[0].index);
-			alert(tab[0].url);
-			alert(tab[0].title);
+			//alert(tab[0].url);
+			var hostName = getDomain(tab[0].url);
+			var pageTitle = tab[0].title;
 		});
-
 });
 
+/* Add some listeners for tab changing events. We want to update our
+* counters when a new tab is updated (reloaded for instance of new url entered). */
+chrome.tabs.onUpdated.addListener(
+	function(tabId, selectionInfo) {
+		//alert('onUpdated');
+		chrome.tabs.query({currentWindow: true, active: true}, function(tab){
+			//alert(tab[0].url);
+			var hostName = getDomain(tab[0].url);
+			var pageTitle = tab[0].title;
+			//Get some info about the environment, every time the user loads a page it counts the total number of tabs opened
+			chrome.tabs.query({}, function(tab){
+				//alert('numberOfTabOpened');
+				//alert(countProperties(tab));
+				// number of tab opened need to be a global variable
+				numberOfTabOpened = countProperties(tab);
+				//alert(numberOfTabOpened);
+			    
+			    //for every tabs opened: display the url 
+			    /* 
+			    for (var index = 0; index < countProperties(tab); index ++){
+			 		alert(tab[index].url);   	
+			    }
+			    */
+			});
+
+			var accountID = 'UA-47883077-1';
+
+			var ga_hit = 
+				"http://www.google-analytics.com/collect?"+
+				"v=1&"+ //version
+				"tid=" + accountID + "&" + //webproperty ** PLEASE IF USED CHANGE WEBPROP **
+				"cid="+ "UniquevisitorIdToBeFilledIn"+ "&"+ // visitor Unique ID
+				"t="+ "event"+ "&"+ // hit type event
+				"ec="+ "visit" +"&"+ //event Cat
+				"ea="+ "pageLoad_background.js" + "&"+ // event action
+				"el="+ hostName +"&"+ // event label
+				"cs="+ "sourceChromeExtension_V1"+ "&"+ //campaign source
+				"cm="+ "mediumChromeExtension_V1"+ "&"+ //campaign medium
+				"cn="+ "mediumChromeExtension_V1"+ "&"+ // campaign name
+				"cd1="+ "UniquevisitorIdToBeFilledIn" + "&" +
+				"cd2=" + hostName + "&" + //custom dimension 2 : definition of the page visited by the user
+				"cd3="+ "pageTitle" + "&" + //custom dimension 3 : definition of the hostname visited by the user
+				"cd4=" + "visitTimeStamp.toString()"  + "&" + // custom dimension 4 : definition of the session timestamp
+				"cd5=" + "test" + "&" + //tests
+				"cm1="+ "1"+ "&" + //custom metric 1 : counter to count how many pages
+				"cm2="	+ "visitTimeStamp" + "&" + //custom metric 2 : timestamp
+				"cm3="+ numberOfTabOpened ; 
+
+				xmlHttp = new XMLHttpRequest();
+				xmlHttp.open( "GET", ga_hit, false );
+				xmlHttp.send();
+
+		});
+});
+
+//Get some info with regards to the opened and active tab
+/* 
+chrome.tabs.query({currentWindow: true, active: true}, function(tab){
+	alert(tab[0].index);
+	alert(tab[0].url);
+	alert(tab[0].title);
+});
+*/

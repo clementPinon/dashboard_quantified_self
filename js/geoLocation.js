@@ -1,17 +1,4 @@
-//alert("geolocation");
-var tablink = document.location.href;
-var hostName = document.location.hostname;
-var visitTimeStamp = new Date().getTime();
-var pageScripts = document.scripts;
-var sessionId = "123455" //tab.sessionId;
-var regEx = 'test_chrome_extension';
-var test = false;
-
-if(tablink.match(regEx)){
-	test = true;
-
-}
-
+var resultGeoLocation = "";
 
 var isGeoLocalized = function(){
 		if(typeof(resultGeoLocation) == "object"){
@@ -22,10 +9,14 @@ var isGeoLocalized = function(){
 		}
 };
 
-//pool method reloaded while geolocalization is not ready
-var pool = function(){
-    //console.log('pool')
+//geoLocReady method reloaded while geolocalization is not ready
+var geoLocReady = function(){
+    //console.log('geoLocReady')
     if ( isGeoLocalized() == true){
+              localStorage.setItem('city',resultGeoLocation.city);
+              localStorage.setItem('neighborhood',resultGeoLocation.neighborhood);
+              
+              /*
               var address = 
 					"Hi, there!\n\n" + 
 					" How is it today in " + resultGeoLocation.city + "?\n" + 
@@ -34,43 +25,33 @@ var pool = function(){
 					" Enjoy your day\n";
               
               alert(address);
+              */
          }
     else{
-         setTimeout(pool,500);    
+         setTimeout(geoLocReady,500);    
          }
 };	
 
-switch(test){
-	case true:
+navigator.geolocation.getCurrentPosition(function (position){
+	var latitude = position.coords.latitude.toFixed(6); //4 digits would give an accuracy within 10m
+	var longitude = position.coords.longitude.toFixed(6);
 
-			resultGeoLocation = "";
+	var latlong = latitude + ','+longitude;
+	var yahooapi = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20geo.placefinder%20where%20text%3D%22' + encodeURIComponent(latlong) + '%22%20and%20gflags%3D%22R%22&format=json&diagnostics=true&callback=';
 
-			navigator.geolocation.getCurrentPosition(function (position){
-			  	var latitude = position.coords.latitude.toFixed(6); //4 digits would give an accuracy within 10m
-				var longitude = position.coords.longitude.toFixed(6);
-				
-				var latlong = latitude + ','+longitude;
-				var yahooapi = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20geo.placefinder%20where%20text%3D%22' + encodeURIComponent(latlong) + '%22%20and%20gflags%3D%22R%22&format=json&diagnostics=true&callback=';
-				
-					  $.getJSON(yahooapi, function(r){
-						  if (r.query.count > 1) {
-								 //var result = r.query.results.Result[0];
-								 resultGeoLocation = r.query.results.Result[0];
-							}
-						  else if (r.query.count == 1){
-								 //var result = r.query.results.Result;
-								 resultGeoLocation = r.query.results.Result;
-								 //console.log(result)
-						  }
-						  else {
-						  	return 0; //no location found
-						  }
-					  });
+	  $.getJSON(yahooapi, function(r){
+		  if (r.query.count > 1) {
+				 //var result = r.query.results.Result[0];
+				 resultGeoLocation = r.query.results.Result[0];
+			}
+		  else if (r.query.count == 1){
+				 //var result = r.query.results.Result;
+				 resultGeoLocation = r.query.results.Result;
+				 //console.log(result)
+		  }
+		  else {
+		  	return 0; //no location found
+		  }
+	  });
 
-				});
-
-		pool();	
-
-		break;
-	default:
-	}
+});

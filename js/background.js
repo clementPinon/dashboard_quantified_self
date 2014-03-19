@@ -30,7 +30,10 @@ var getDomain = function (data) {
 /* NOTE:
 The geolocation function works properly with the background.js
 We should work on having it triggered only once per day or only once the browser is being opened.
+geoLocReady will update the local storage with city and neighborhood attributes
 */   
+
+geoLocReady();
 
 
 /* Add some listeners for tab changing events. We want to update our
@@ -83,12 +86,12 @@ chrome.tabs.onUpdated.addListener(
 				"el="+ hostName +"&"+ // event label
 				"cs="+ "sourceChromeExtension_V1"+ "&"+ //campaign source
 				"cm="+ "mediumChromeExtension_V1"+ "&"+ //campaign medium
-				"cn="+ "mediumChromeExtension_V1"+ "&"+ // campaign name
+				"cn="+ "mediumChromeExtension_V1"+ "&"+ //campaign name
 				"cd1="+ "UniquevisitorIdToBeFilledIn" + "&" +
-				"cd2=" + hostName + "&" + //custom dimension 2 : definition of the page visited by the user
-				"cd3="+ "pageTitle" + "&" + //custom dimension 3 : definition of the hostname visited by the user
-				"cd4=" + "visitTimeStamp.toString()"  + "&" + // custom dimension 4 : definition of the session timestamp
-				"cd5=" + "test" + "&" + //tests
+				"cd2=" + hostName + "&" + //custom dimension 2 : definition of the hostname visited by the user
+				"cd3="+ localStorage.city + "&" + //custom dimension 3 : definition of the hostname visited by the user
+				"cd4=" + localStorage.neighborhood + "&" + // custom dimension 4 : definition of the session timestamp
+				"cd5=" + "visitTimeStamp.toString()" + "&" + //tests
 				"cm1="+ "1"+ "&" + //custom metric 1 : counter to count how many pages
 				"cm2="	+ "visitTimeStamp" + "&" + //custom metric 2 : timestamp
 				"cm3="+ numberOfTabOpened ; 

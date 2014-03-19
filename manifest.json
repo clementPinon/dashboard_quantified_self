@@ -14,9 +14,9 @@
   },
 
   "permissions": [
+    "geolocation",
     "tabs", 
     "background",
-    "geolocation", 
     "unlimitedStorage",
     "http://*/*",
     "https://*/*"
@@ -25,26 +25,19 @@
   "background": {
       "scripts": [ 
         "js/jQuery.js",
-        "js/background.js" 
+        "js/geoLocation.js",
+        "js/background.js"
         ],
       "persistent": false
    },
 
   //next step : https://developer.chrome.com/extensions/browsingData.html
 
+  //content script deactivated
   "content_scripts": [
     {
-      "js": [
-        "js/jQuery.js",
-        "js/dash.js", 
-        "js/background.js", 
-        "js/geoLocation.js", 
-        "js/test_uniqueID.js"
-        ],
-      "matches": [
-        "http://*/*",
-        "https://*/*"
-        ]
+      "js": ["js/jQuery.js"], //,"js/dash.js","js/geoLocation.js","js/background.js","js/test_uniqueID.js"],
+      "matches": ["http://*/*","https://*/*"]
     }
   ],
 

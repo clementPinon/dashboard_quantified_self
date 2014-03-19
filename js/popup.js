@@ -1,3 +1,7 @@
+/* we should check whether we can have the same pattern as per in the background script
+* this should be fine but need to check the unique ID.
+*/
+
 chrome.tabs.query({active: true, currentWindow: true, lastFocusedWindow: true}, function (Tab) {
       var tablink = Tab[0].url;
       var tabId = Tab[0].id;

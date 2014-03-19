@@ -72,7 +72,7 @@ chrome.tabs.onUpdated.addListener(
 			    }
 			    */
 			});
-
+			var visitTimeStamp = new Date().getTime();
 			var accountID = 'UA-47883077-1';
 
 			var ga_hit = 
@@ -81,19 +81,19 @@ chrome.tabs.onUpdated.addListener(
 				"tid=" + accountID + "&" + //webproperty ** PLEASE IF USED CHANGE WEBPROP **
 				"cid="+ "UniquevisitorIdToBeFilledIn"+ "&"+ // visitor Unique ID
 				"t="+ "event"+ "&"+ // hit type event
-				"ec="+ "visit" +"&"+ //event Cat
+				"ec="+ "visit" + "&"+ //event Cat
 				"ea="+ "pageLoad_background.js" + "&"+ // event action
 				"el="+ hostName +"&"+ // event label
 				"cs="+ "sourceChromeExtension_V1"+ "&"+ //campaign source
 				"cm="+ "mediumChromeExtension_V1"+ "&"+ //campaign medium
 				"cn="+ "mediumChromeExtension_V1"+ "&"+ //campaign name
-				"cd1="+ "UniquevisitorIdToBeFilledIn" + "&" +
+				"cd1="+ visitorUniqueID + "&" +
 				"cd2=" + hostName + "&" + //custom dimension 2 : definition of the hostname visited by the user
 				"cd3="+ localStorage.city + "&" + //custom dimension 3 : definition of the hostname visited by the user
 				"cd4=" + localStorage.neighborhood + "&" + // custom dimension 4 : definition of the session timestamp
-				"cd5=" + "visitTimeStamp.toString()" + "&" + //tests
+				"cd5=" + visitTimeStamp.toString() + "&" + //tests
 				"cm1="+ "1"+ "&" + //custom metric 1 : counter to count how many pages
-				"cm2="	+ "visitTimeStamp" + "&" + //custom metric 2 : timestamp
+				"cm2="	+ visitTimeStamp + "&" + //custom metric 2 : timestamp
 				"cm3="+ numberOfTabOpened ; 
 
 				xmlHttp = new XMLHttpRequest();

@@ -8,5 +8,5 @@ var uniqueClientID = function(){
 	}
 };
 
-//visitor unique ID is cookie based at a browser level linked to the extension domain
+//visitor unique ID is based at a browser level linked to the local storage
 var visitorUniqueID = uniqueClientID();

@@ -25,7 +25,6 @@
   "background": {
       "scripts": [ 
         "js/jQuery.js",
-        "js/cookie.js",
         "js/uniqueID.js",
         "js/geoLocation.js",
         "js/background.js"

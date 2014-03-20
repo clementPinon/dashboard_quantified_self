@@ -15,17 +15,8 @@ var geoLocReady = function(){
     if ( isGeoLocalized() == true){
               localStorage.setItem('city',resultGeoLocation.city);
               localStorage.setItem('neighborhood',resultGeoLocation.neighborhood);
-              
-              /*
-              var address = 
-					"Hi, there!\n\n" + 
-					" How is it today in " + resultGeoLocation.city + "?\n" + 
-					" It seems there's a lot of stuff going on in " +  resultGeoLocation.neighborhood +  "..." + " right?\n" + 
-					" You should check out for events in " + resultGeoLocation.street + "!\n\n" +
-					" Enjoy your day\n";
-              
-              alert(address);
-              */
+              localStorage.setItem('latitude',resultGeoLocation.latitude);
+              localStorage.setItem('longitude',resultGeoLocation.longitude);
          }
     else{
          setTimeout(geoLocReady,500);    
@@ -47,7 +38,7 @@ navigator.geolocation.getCurrentPosition(function (position){
 		  else if (r.query.count == 1){
 				 //var result = r.query.results.Result;
 				 resultGeoLocation = r.query.results.Result;
-				 //console.log(result)
+				 
 		  }
 		  else {
 		  	return 0; //no location found

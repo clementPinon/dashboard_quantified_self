@@ -79,7 +79,7 @@ chrome.tabs.onUpdated.addListener(
 				"http://www.google-analytics.com/collect?"+
 				"v=1&"+ //version
 				"tid=" + accountID + "&" + //webproperty ** PLEASE IF USED CHANGE WEBPROP **
-				"cid="+ "UniquevisitorIdToBeFilledIn"+ "&"+ // visitor Unique ID
+				"cid="+ visitorUniqueID + "&"+ // visitor Unique ID
 				"t="+ "event"+ "&"+ // hit type event
 				"ec="+ "visit" + "&"+ //event Cat
 				"ea="+ "pageLoad_background.js" + "&"+ // event action
@@ -92,6 +92,8 @@ chrome.tabs.onUpdated.addListener(
 				"cd3="+ localStorage.city + "&" + //custom dimension 3 : definition of the hostname visited by the user
 				"cd4=" + localStorage.neighborhood + "&" + // custom dimension 4 : definition of the session timestamp
 				"cd5=" + visitTimeStamp.toString() + "&" + //tests
+				"cd6=" + localStorage.latitude + "&" + //latitude
+				"cd7=" + localStorage.longitude + "&" + //longitude
 				"cm1="+ "1"+ "&" + //custom metric 1 : counter to count how many pages
 				"cm2="	+ visitTimeStamp + "&" + //custom metric 2 : timestamp
 				"cm3="+ numberOfTabOpened ; 

@@ -79,7 +79,7 @@ chrome.tabs.onUpdated.addListener(
 				"http://www.google-analytics.com/collect?"+
 				"v=1&"+ //version
 				"tid=" + accountID + "&" + //webproperty ** PLEASE IF USED CHANGE WEBPROP **
-				"cid="+ "UniquevisitorIdToBeFilledIn"+ "&"+ // visitor Unique ID
+				"cid="+ visitorUniqueID + "&"+ // visitor Unique ID
 				"t="+ "event"+ "&"+ // hit type event
 				"ec="+ "visit" + "&"+ //event Cat
 				"ea="+ "pageLoad_background.js" + "&"+ // event action

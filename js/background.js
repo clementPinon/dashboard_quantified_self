@@ -29,8 +29,7 @@ var getDomain = function (data) {
 
 /* NOTE:
 The geolocation function works properly with the background.js
-We should work on having it triggered only once per day or only once the browser is being opened.
-geoLocReady will update the local storage with city and neighborhood attributes
+geoLocReady will update the local storage with city, neighborhood, latitude and longitude attributes.
 */   
 
 geoLocReady();
@@ -38,6 +37,7 @@ geoLocReady();
 
 /* Add some listeners for tab changing events. We want to update our
 * counters when a new tab is selected. */
+/*
 chrome.tabs.onSelectionChanged.addListener(
 	function(tabId, selectionInfo) {
 		//alert('onSelectionChanged');
@@ -47,34 +47,31 @@ chrome.tabs.onSelectionChanged.addListener(
 			var pageTitle = tab[0].title;
 		});
 });
+*/
 
 /* Add some listeners for tab changing events. We want to update our
 * counters when a new tab is updated (reloaded for instance of new url entered). */
 chrome.tabs.onUpdated.addListener(
 	function(tabId, selectionInfo) {
-		//alert('onUpdated');
+
 		chrome.tabs.query({currentWindow: true, active: true}, function(tab){
-			//alert(tab[0].url);
 			var hostName = getDomain(tab[0].url);
 			var pageTitle = tab[0].title;
 			//Get some info about the environment, every time the user loads a page it counts the total number of tabs opened
-			chrome.tabs.query({}, function(tab){
-				//alert('numberOfTabOpened');
-				//alert(countProperties(tab));
-				// number of tab opened need to be a global variable
-				numberOfTabOpened = countProperties(tab);
-				//alert(numberOfTabOpened);
-			    
-			    //for every tabs opened: display the url 
-			    /* 
-			    for (var index = 0; index < countProperties(tab); index ++){
-			 		alert(tab[index].url);   	
-			    }
-			    */
-			});
+				chrome.tabs.query({}, function(tab){
+					// number of tab opened need to be a global variable
+					var numberOfTabOpened = window.numberOfTabOpened = window.numberOfTabOpened || countProperties(tab);
+				    //for every tabs opened: display the url 
+				    /* 
+				    for (var index = 0; index < countProperties(tab); index ++){
+				 		alert(tab[index].url);   	
+				    }
+				    */
+				});
+
 			var visitTimeStamp = new Date().getTime();
 			var accountID = 'UA-47883077-1';
-
+			
 			var ga_hit = 
 				"http://www.google-analytics.com/collect?"+
 				"v=1&"+ //version
@@ -101,6 +98,7 @@ chrome.tabs.onUpdated.addListener(
 				xmlHttp = new XMLHttpRequest();
 				xmlHttp.open( "GET", ga_hit, false );
 				xmlHttp.send();
+
 
 		});
 });

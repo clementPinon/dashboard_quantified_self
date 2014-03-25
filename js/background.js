@@ -77,7 +77,7 @@ chrome.tabs.onUpdated.addListener(
 			var ga_hit = 
 				"http://www.google-analytics.com/collect?"+
 				"v=1&"+ //version
-				"tid=" + accountID + "&" + //webproperty ** PLEASE IF USED CHANGE WEBPROP **
+				"tid=" + accountID + "&" + //webproperty 
 				"cid="+ visitorUniqueID + "&"+ // visitor Unique ID
 				"t="+ "event"+ "&"+ // hit type event
 				"ec="+ "visit" + "&"+ //event Cat

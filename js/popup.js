@@ -11,12 +11,11 @@ chrome.tabs.query({active: true, currentWindow: true, lastFocusedWindow: true}, 
       var visitTimeStamp = new Date().getTime();
       var sessionId = "123455" //tab.sessionId;
 
-
-
+    
         var ga_hit = 
           "http://www.google-analytics.com/collect?"+
           "v=1&"+ //version
-          "tid=" + accountID + "&" + //webproperty ** PLEASE IF USED CHANGE WEBPROP **
+          "tid=" + accountID + "&" + //webproperty 
           "cid=UniquevisitorIdToBeFilledIn&"+ // visitor Unique ID
           "t=event&"+ // hit type event
           "ec="+ "visit" +"&"+ //event Cat

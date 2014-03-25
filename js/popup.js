@@ -10,20 +10,7 @@ chrome.tabs.query({active: true, currentWindow: true, lastFocusedWindow: true}, 
       //var hostName = document.location.hostname;
       var visitTimeStamp = new Date().getTime();
       var sessionId = "123455" //tab.sessionId;
-      var test = false;
-      var regEx = 'test_chrome_extension';
 
-      if(tablink.match(regEx)){
-        test = true;
-      }
-
-      switch(test){
-        case true:
-          var accountID = 'UA-47883077-2';
-          break;
-        default:
-          var accountID = 'UA-47883077-1';
-      }
 
 
         var ga_hit = 

@@ -70,12 +70,7 @@ chrome.tabs.onUpdated.addListener(
 				});
 
 			var visitTimeStamp = new Date().getTime();
-<<<<<<< HEAD
-			var accountID = 'UA-47883077-1';
-			
-=======
 
->>>>>>> bf8b1c5cbec150135f82863d148a98376ea6db6c
 			var ga_hit = 
 				"http://www.google-analytics.com/collect?"+
 				"v=1&"+ //version

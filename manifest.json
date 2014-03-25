@@ -1,7 +1,7 @@
 {
   // Author : Clement Pinon
   // mail : clement.pinon@gmail.com
-  // ** PLEASE IF USED CHANGE WEBPROPERTY in popup.js and dash.js **
+  // ** IF USED CHANGE WEBPROPERTY in accountID.js **
 
   "manifest_version": 2,
 

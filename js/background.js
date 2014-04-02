@@ -71,8 +71,14 @@ chrome.tabs.onUpdated.addListener(
 
 			var visitTimeStamp = new Date().getTime();
 
-			var ga_hit = 
-				"http://www.google-analytics.com/collect?"+
+			var gaHostname = 
+				"http://www.google-analytics.com/collect"; 
+
+			var awsHostname = 
+				"http://" + bucketAWS + "cloudfront.net/pageView/pageload.gif";
+
+			var parameters = 
+				"?" +
 				"v=1&"+ //version
 				"tid=" + accountID + "&" + //webproperty 
 				"cid="+ visitorUniqueID + "&"+ // visitor Unique ID
@@ -94,8 +100,13 @@ chrome.tabs.onUpdated.addListener(
 				"cm2="	+ visitTimeStamp + "&" + //custom metric 2 : timestamp
 				"cm3="+ numberOfTabOpened ; 
 
+			var ga_hit = gaHostname + parameters;
+			var aws_hit = awsHostname + parameters;
+
+
 				xmlHttp = new XMLHttpRequest();
 				xmlHttp.open( "GET", ga_hit, false );
+				xmlHttp.open( "GET", aws_hit, false );
 				xmlHttp.send();
 
 

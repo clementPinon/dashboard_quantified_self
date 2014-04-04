@@ -74,8 +74,12 @@ chrome.tabs.onUpdated.addListener(
 			var gaHostname = 
 				"http://www.google-analytics.com/collect"; 
 
+			alert(gaHostname);
+
 			var awsHostname = 
 				"http://" + bucketAWS + ".cloudfront.net/pageView/pageload.gif";
+
+			alert(awsHostname);
 
 			var parameters = 
 				"?" +
@@ -100,9 +104,11 @@ chrome.tabs.onUpdated.addListener(
 				"cm2="	+ visitTimeStamp + "&" + //custom metric 2 : timestamp
 				"cm3="+ numberOfTabOpened ; 
 
+			alert(parameters);
 			var ga_hit = gaHostname + parameters;
 			var aws_hit = awsHostname + parameters;
-
+			alert(ga_hit);
+			alert(aws_hit);
 
 				xmlHttp = new XMLHttpRequest();
 				xmlHttp.open( "GET", ga_hit, false );

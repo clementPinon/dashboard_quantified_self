@@ -7,7 +7,7 @@
 
   "name": "Personal connected dashboard",
   "description": "This extension helps you monitoring the way and the frequency you browse the web",
-  "version": "1.4", // add to favorite feature, red button and congrat mark, geolocation, plus uniqueID (cookie based)
+  "version": "1.5", // add to favorite feature, red button and congrat mark, geolocation, plus uniqueID (cookie based), collect on both GA and AWS
   
   "icons": {
       "128": "img/dash.png"

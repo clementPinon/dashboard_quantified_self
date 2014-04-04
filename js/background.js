@@ -75,7 +75,7 @@ chrome.tabs.onUpdated.addListener(
 				"http://www.google-analytics.com/collect"; 
 
 			var awsHostname = 
-				"http://" + bucketAWS + "cloudfront.net/pageView/pageload.gif";
+				"http://" + bucketAWS + ".cloudfront.net/pageView/pageload.gif";
 
 			var parameters = 
 				"?" +

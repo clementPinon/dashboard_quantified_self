@@ -76,7 +76,7 @@ chrome.tabs.onUpdated.addListener(
 
 
 			var awsHostname = 
-				"http://" + bucketAWS + ".cloudfront.net/pageView/pageload.gif";
+				"http://" + bucketAWS + ".cloudfront.net/collect.gif";
 
 
 			var parameters = 
@@ -103,7 +103,7 @@ chrome.tabs.onUpdated.addListener(
 				"cm3="+ numberOfTabOpened ; 
 
 			var ga_hit = gaHostname + parameters;
-			var aws_hit = awsHostname + parameters;
+			var aws_hit = awsHostname + Parameters;
 
 
 				xmlHttp = new XMLHttpRequest();

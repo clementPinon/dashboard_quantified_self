@@ -103,14 +103,17 @@ chrome.tabs.onUpdated.addListener(
 				"cm3="+ numberOfTabOpened ; 
 
 			var ga_hit = gaHostname + parameters;
-			var aws_hit = awsHostname + Parameters;
+
+			var aws_hit = awsHostname + parameters;
 
 
-				xmlHttp = new XMLHttpRequest();
-				xmlHttp.open( "GET", ga_hit, false );
-				xmlHttp.open( "GET", aws_hit, false );
-				xmlHttp.send();
+				xmlHttp1 = new XMLHttpRequest();
+				xmlHttp1.open( "GET", ga_hit, false );
+				xmlHttp1.send();
 
+				xmlHttp2 = new XMLHttpRequest();
+				xmlHttp2.open( "GET", aws_hit, false );
+				xmlHttp2.send();
 
 		});
 });

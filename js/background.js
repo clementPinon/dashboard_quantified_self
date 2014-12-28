@@ -1,3 +1,44 @@
+//http://stackoverflow.com/questions/15718066/chrome-runtime-sendmessage-not-working-as-expected
+
+if (!chrome.runtime) {
+    // Chrome 20-21
+    chrome.runtime = chrome.extension;
+} else if(!chrome.runtime.onMessage) {
+    // Chrome 22-25
+    chrome.runtime.onMessage = chrome.extension.onMessage;
+    chrome.runtime.sendMessage = chrome.extension.sendMessage;
+    chrome.runtime.onConnect = chrome.extension.onConnect;
+    chrome.runtime.connect = chrome.extension.connect;
+}
+
+
+//analysing which scripts are used on the page
+
+/*chrome.extension.onRequest.addListener(function(request, sender, callback) {
+  var tabId = request.tabId;
+  chrome.tabs.executeScript(tabId, { file: "content.js" }, function() {
+    chrome.tabs.sendRequest(tabId, {}, function(scripts) {
+      var test = scripts[0];
+    });
+  });
+});
+*/
+var test = 'test';
+/*chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+  	if (getScripts() != "undefined")
+    test = scripts[0];
+  });
+*/
+
+//chrome.tabs.getSelected(null, function(tab) {
+	chrome.runtime.onMessage.addListener(function(message,sender,sendResponse)  { 
+        // Call the callback function
+        alert('message received'); 
+        
+	});
+//});
+alert('message not received');
+
 //method to count the number of properties in an object
 function countProperties(obj) {
     var count = 0;
@@ -52,6 +93,15 @@ chrome.tabs.onSelectionChanged.addListener(
 /* Add some listeners for tab changing events. We want to update our
 * counters when a new tab is updated (reloaded for instance of new url entered). */
 chrome.tabs.onUpdated.addListener(
+  	
+
+  /*	chrome.tabs.executeScript({
+    	code: console.log("red")
+  	});
+*/
+
+
+
 	function(tabId, selectionInfo) {
 
 		chrome.tabs.query({currentWindow: true, active: true}, function(tab){
@@ -67,6 +117,8 @@ chrome.tabs.onUpdated.addListener(
 				 		alert(tab[index].url);   	
 				    }
 				    */
+
+
 				});
 
 			var visitTimeStamp = new Date().getTime();

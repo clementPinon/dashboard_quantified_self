@@ -33,6 +33,13 @@
       "persistent": false
    },
 
+ "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["js/scripts_crawler.js"]
+    }
+  ],
+  
   //next step : https://developer.chrome.com/extensions/browsingData.html
 
 

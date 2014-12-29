@@ -19,10 +19,12 @@ function getScripts(){
 	scripts = document.getElementsByTagName('script');	
   trackers = [];
     for (var d = 0; d < scripts.length; d++){
-        if (scripts[d].src.match("\.js")){
+        if (scripts[d].src.length > 0){
+        //if (scripts[d].src.match("\.js")){
         trackers.push(scripts[d].src);
         console.log("script " + d + ": " + scripts[d].src);
         }
+
     }
 	return trackers.toString();
 }

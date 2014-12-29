@@ -15,5 +15,7 @@ if (!chrome.runtime) {
 
 //get scripts from the DOM through content script's message 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-    scripts = message;
+    trackers = message;
 });
+
+//trackers.match("google");

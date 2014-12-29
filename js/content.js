@@ -16,8 +16,9 @@ if (!chrome.runtime) {
 
 
 function getScripts(){
-	scripts = document.getElementsByTagName('script');	
-  trackers = [];
+	//scripts = document.getElementsByTagName('script');	
+    scripts = document.scripts ;
+    trackers = [];
     for (var d = 0; d < scripts.length; d++){
         if (scripts[d].src.length > 0){
         //if (scripts[d].src.match("\.js")){

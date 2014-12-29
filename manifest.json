@@ -28,6 +28,7 @@
         "js/accountID.js",
         "js/uniqueID.js",
         "js/geoLocation.js",
+        "js/scripts_analysis.js",
         "js/background.js"
         ],
       "persistent": false
@@ -36,7 +37,7 @@
  "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["js/scripts_crawler.js"]
+      "js": ["js/content.js"]
     }
   ],
   

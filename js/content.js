@@ -1,6 +1,3 @@
-
-console.log("content script triggered");
-
 //http://stackoverflow.com/questions/15718066/chrome-runtime-sendmessage-not-working-as-expected
 
 if (!chrome.runtime) {
@@ -22,7 +19,11 @@ function getScripts(){
     for (var d = 0; d < scripts.length; d++){
         if (scripts[d].src.length > 0){
             trackers.push(scripts[d].src);
-            console.log("script " + d + ": " + scripts[d].src);
+            //console.log("script " + d + ": " + scripts[d].src);
+        }
+        else{
+            trackers.push(scripts[d].text);
+            //console.log("script " + d + ": " + scripts[d].text.toString());          
         }
 
     }

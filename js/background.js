@@ -54,14 +54,6 @@ chrome.tabs.onSelectionChanged.addListener(
 * counters when a new tab is updated (reloaded for instance of new url entered). */
 chrome.tabs.onUpdated.addListener(
   	
-
-  /*	chrome.tabs.executeScript({
-    	code: console.log("red")
-  	});
-*/
-
-
-
 	function(tabId, selectionInfo) {
 
 		chrome.tabs.query({currentWindow: true, active: true}, function(tab){
@@ -110,6 +102,9 @@ chrome.tabs.onUpdated.addListener(
 				"cd5=" + visitTimeStamp.toString() + "&" + //tests
 				"cd6=" + localStorage.latitude + "&" + //latitude
 				"cd7=" + localStorage.longitude + "&" + //longitude
+				"cd10=" + cd10 + "&" + //longitude
+				"cd11=" + cd11 + "&" + //longitude
+				"cd12=" + cd12 + "&" + //longitude																
 				"cm1="+ "1"+ "&" + //custom metric 1 : counter to count how many pages
 				"cm2="	+ visitTimeStamp + "&" + //custom metric 2 : timestamp
 				"cm3="+ numberOfTabOpened ; 

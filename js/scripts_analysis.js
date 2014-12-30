@@ -12,10 +12,41 @@ if (!chrome.runtime) {
     chrome.runtime.connect = chrome.extension.connect;
 }
 
+//custom dimension default values
+cd10 = "not quantified";
+cd11 = "not tracked with ga";
+cd12 = "no criteo tag";
 
 //get scripts from the DOM through content script's message 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-    trackers = message;
+    t = message; //message has to be a string, we passed the tracker after we applied a toString() method
+
+	    if (t.match("quant.js")){
+			cd10 = "quantcast quantified";
+		};
+
+		if (t.match("analytics.js")){
+			if (t.match("dc.js")){
+				cd11 = "universal analytics with demographics";
+			}
+			else{
+				cd11 = "universal analytics without demographics";	
+			}
+		};
+
+		if (t.match("ga.js")){
+				cd11 = "google analytics without demographics";
+		};
+
+		if (t.match("dc.js")){
+				cd11 = "google analytics with demographics";
+		};
+
+		if (t.match("criteo|ld.js")){
+				cd12 = "criteo";
+		}
+
+
 });
 
-//trackers.match("google");
+
